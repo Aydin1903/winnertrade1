@@ -69,7 +69,7 @@ a = Analysis(
     ['run_api.py'],
     pathex=['src'],
     binaries=[],
-    datas=[('src', '')],
+    datas=[('src', 'src')],
     hiddenimports=uvicorn_imports + app_imports,
     hookspath=[],
     hooksconfig={},
