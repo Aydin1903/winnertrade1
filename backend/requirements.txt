@@ -1,0 +1,29 @@
+# Core Dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# Exchange APIs
+ccxt>=4.1.0,<5
+
+# Technical Analysis
+pandas==2.1.3
+numpy==1.26.2
+ta-lib==0.4.28
+
+# Alternative: pandas-ta (if ta-lib installation fails)
+# pandas-ta==0.3.14b0
+
+# Utilities
+python-dotenv==1.0.0
+python-dateutil==2.8.2
+
+# Logging
+colorlog==6.8.0
+
+# HTTP Client
+httpx==0.25.2
+
+# Data Storage
+aiofiles==23.2.1

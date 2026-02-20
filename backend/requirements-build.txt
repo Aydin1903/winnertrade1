@@ -1,0 +1,15 @@
+# PyInstaller tek exe build için (ta-lib hariç)
+# Not: Python 3.11 veya 3.12 kullanin; 3.14 ile pandas/numpy kaynak derlemesi Turkce karakterli yollarda hata verebilir.
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+ccxt>=4.1.0,<5
+pandas>=2.1,<3
+numpy>=1.26,<3
+python-dotenv==1.0.0
+python-dateutil==2.8.2
+colorlog==6.8.0
+httpx==0.25.2
+aiofiles==23.2.1
+pyinstaller>=6.0.0

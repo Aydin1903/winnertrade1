@@ -1,0 +1,59 @@
+# WinnerTrade - Windows installer (Python gerekmez; bu workflow her seyı uretir)
+name: Build Windows Installer
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build backend exe (PyInstaller)
+        run: |
+          cd backend
+          python -m pip install -r requirements-build.txt
+          python -m PyInstaller winnertrade.spec
+        shell: pwsh
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+        shell: pwsh
+
+      - name: Build frontend + Electron
+        run: |
+          cd frontend
+          npm run build
+          npx electron-builder --win
+        shell: pwsh
+
+      - name: Upload installer artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: WinnerTrade-Windows-Installer
+          path: |
+            frontend/release/*.exe
+            frontend/release/*.msi
+
+      - name: Upload backend exe (Node-only build icin)
+        uses: actions/upload-artifact@v4
+        with:
+          name: winnertrade-backend-exe
+          path: backend/dist/winnertrade-backend.exe
